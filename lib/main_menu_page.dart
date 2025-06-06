@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pemilihan_misi_page.dart';
 import 'pencapaian_page.dart';
+import 'pengaturan_page.dart';
 import 'keluar_game_page.dart';
 
 class MainMenuPage extends StatelessWidget {
@@ -24,11 +26,13 @@ class MainMenuPage extends StatelessWidget {
             ),
           ),
 
-          // Gambar background
+          // Gambar background, bungkus dengan IgnorePointer agar tidak intercept tap
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/main_menu_bg.png',
-              fit: BoxFit.cover,
+            child: IgnorePointer(
+              child: Image.asset(
+                'assets/images/main_menu_bg.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 
@@ -57,14 +61,19 @@ class MainMenuPage extends StatelessWidget {
 
                   const SizedBox(height: 0),
 
-                  // Tombol MULAI
+                  // Tombol MULAI - sudah diarahkan ke halaman pemilihan misi
                   _buildMenuButton(
                     context,
                     label: "MULAI",
                     color: const Color(0xFFFFD000),
                     textColor: Colors.black,
                     onPressed: () {
-                      // TODO: Ganti ke halaman pilih dunia
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const PemilihanMisiPage(),
+                        ),
+                      );
                     },
                   ),
 
@@ -92,6 +101,12 @@ class MainMenuPage extends StatelessWidget {
                     textColor: Colors.white,
                     onPressed: () {
                       // TODO: Ganti ke halaman pengaturan
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const PengaturanPage(),
+                        ),
+                      );
                     },
                   ),
 
@@ -109,7 +124,7 @@ class MainMenuPage extends StatelessWidget {
                     },
                   ),
 
-                  const SizedBox(height: 0), // Jarak bawah agar tidak overflow
+                  const SizedBox(height: 0),
                 ],
               ),
             ),
