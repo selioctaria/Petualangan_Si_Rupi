@@ -69,6 +69,7 @@ flutter:
     - assets/images/konfirmasi_keluar/si_rupi_sad.png
     - assets/images/konfirmasi_keluar/teks.png
     - assets/images/konfirmasi_keluar/background.png
+    - assets/images/menang/si_rupi_menang.png
 
 
   # To add assets to your application, add an assets section, like this:
