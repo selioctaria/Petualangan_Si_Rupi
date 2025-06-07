@@ -79,9 +79,9 @@ flutter:
     - assets/images/pengaturan/si_rupi_waving.png
     - assets/images/benar_salah/benar.png
     - assets/images/benar_salah/salah.png
-    - assets/images/pencapaianduniabangga/Background.png
-    - assets/images/pencapaianduniabangga/Tulisan Dunia Bangga.png
-    - assets/images/pencapaianduniabangga/Badge Dunia Bangga.png
+    - assets/images/pencapaianduniabangga/background.png
+    - assets/images/pencapaianduniabangga/tulisan_dunia_bangga.png
+    - assets/images/pencapaianduniabangga/badge_dunia_bangga.png
 
 
 
