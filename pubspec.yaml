@@ -82,6 +82,12 @@ flutter:
     - assets/images/pencapaianduniabangga/background.png
     - assets/images/pencapaianduniabangga/tulisan_dunia_bangga.png
     - assets/images/pencapaianduniabangga/badge_dunia_bangga.png
+    - assets/images/pencapaianduniacinta/background.png
+    - assets/images/pencapaianduniacinta/teks-dunia-cinta.png
+    - assets/images/pencapaianduniacinta/lencana_cinta.png
+    - assets/images/pencapaianduniapaham/background.png
+    - assets/images/pencapaianduniapaham/teks-dunia-paham.png
+    - assets/images/pencapaianduniapaham/lencana_paham.png
 
 
 
