@@ -79,6 +79,10 @@ flutter:
     - assets/images/pengaturan/si_rupi_waving.png
     - assets/images/benar_salah/benar.png
     - assets/images/benar_salah/salah.png
+    - assets/images/pencapaianduniabangga/Background.png
+    - assets/images/pencapaianduniabangga/Tulisan Dunia Bangga.png
+    - assets/images/pencapaianduniabangga/Badge Dunia Bangga.png
+
 
 
   # To add assets to your application, add an assets section, like this:
