@@ -6,7 +6,7 @@ class PencapaianPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF77BDFC),
+      backgroundColor: const Color(0xFF5196D0),
       body: Stack(
         children: [
           // Background
