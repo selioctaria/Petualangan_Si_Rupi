@@ -77,6 +77,8 @@ flutter:
     - assets/images/pengaturan/background-pengaturan.png
     - assets/images/pengaturan/teks-pengaturan.png
     - assets/images/pengaturan/si_rupi_waving.png
+    - assets/images/benar_salah/benar.png
+    - assets/images/benar_salah/salah.png
 
 
   # To add assets to your application, add an assets section, like this:
