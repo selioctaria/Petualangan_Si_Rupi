@@ -24,7 +24,7 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                 // Judul "DUNIA CINTA"
                 Center(
                   child: Image.asset(
-                    'assets/images/pencapaianduniabangga/tulisan_dunia_bangga.png',
+                    'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
                     height: 140,
                     fit: BoxFit.contain,
                   ),
@@ -59,7 +59,7 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              'assets/images/pencapaianduniabangga/badge_dunia_bangga.png',
+                              'assets/images/pencapaianduniabangga/lencana_bangga.png',
                               height: 120,
                             ),
                             const SizedBox(width: 40),
