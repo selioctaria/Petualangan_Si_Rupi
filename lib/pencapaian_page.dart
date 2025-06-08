@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pencapaian_dunia_cinta.dart';
+import 'pencapaian_dunia_bangga.dart';
+import 'pencapaian_dunia_paham.dart';
 
 class PencapaianPage extends StatelessWidget {
   const PencapaianPage({super.key});
@@ -22,7 +25,7 @@ class PencapaianPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 50),
 
-                // Gambar judul "PENCAPAIAN"
+                // Judul "PENCAPAIAN"
                 Image.asset(
                   'assets/images/pencapaian/teks.png',
                   height: 60,
@@ -40,7 +43,7 @@ class PencapaianPage extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                // Tiga dunia horizontal
+                // Tiga dunia horizontal dengan fungsi klik pada Dunia Paham
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -50,16 +53,40 @@ class PencapaianPage extends StatelessWidget {
                         iconPath: 'assets/images/pencapaian/dunia_cinta.png',
                         line1: 'DUNIA',
                         line2: 'CINTA',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PencapaianDuniaCintaPage(),
+                            ),
+                          );
+                        },
                       ),
                       _buildDuniaItem(
                         iconPath: 'assets/images/pencapaian/dunia_bangga.png',
                         line1: 'DUNIA',
                         line2: 'BANGGA',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PencapaianDuniaBanggaPage(),
+                            ),
+                          );
+                        },
                       ),
                       _buildDuniaItem(
                         iconPath: 'assets/images/pencapaian/dunia_paham.png',
                         line1: 'DUNIA',
                         line2: 'PAHAM',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PencapaianDuniaPahamPage(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -103,45 +130,49 @@ class PencapaianPage extends StatelessWidget {
     required String iconPath,
     required String line1,
     required String line2,
+    VoidCallback? onTap,
   }) {
-    return Column(
-      children: [
-        Image.asset(
-          iconPath,
-          height: 120,
-          width: 120,
-          fit: BoxFit.contain,
-        ),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 12),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF7941D), // oranye
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.black, width: 1.5),
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Image.asset(
+            iconPath,
+            height: 120,
+            width: 120,
+            fit: BoxFit.contain,
           ),
-          child: Column(
-            children: [
-              Text(
-                line1,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white,
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF7941D), // oranye
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.black, width: 1.5),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  line1,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                line2,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white,
+                Text(
+                  line2,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
