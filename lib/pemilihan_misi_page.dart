@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'main_menu_page.dart';
+import 'dunia_cinta_game.dart'; // Tambahkan import halaman game Dunia Cinta
 
 class PemilihanMisiPage extends StatelessWidget {
   const PemilihanMisiPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -60,17 +59,30 @@ class PemilihanMisiPage extends StatelessWidget {
                     children: [
                       Flexible(
                         child: _buildDuniaItem(
+                          context: context,
                           iconPath: 'assets/images/pemilihan-misi/dunia_cinta.png',
                           line1: 'DUNIA',
                           line2: 'CINTA',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DuniaCintaGamePage(),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       const SizedBox(width: 16),
                       Flexible(
                         child: _buildDuniaItem(
+                          context: context,
                           iconPath: 'assets/images/pemilihan-misi/dunia_bangga.png',
                           line1: 'DUNIA',
                           line2: 'BANGGA',
+                          onTap: () {
+                            // Tambahkan navigasi ke halaman Dunia Bangga jika sudah ada
+                          },
                         ),
                       ),
                     ],
@@ -81,9 +93,13 @@ class PemilihanMisiPage extends StatelessWidget {
                   // Dunia Paham di tengah
                   Center(
                     child: _buildDuniaItem(
+                      context: context,
                       iconPath: 'assets/images/pemilihan-misi/dunia_paham.png',
                       line1: 'DUNIA',
                       line2: 'PAHAM',
+                      onTap: () {
+                        // Tambahkan navigasi ke halaman Dunia Paham jika sudah ada
+                      },
                     ),
                   ),
 
@@ -132,48 +148,53 @@ class PemilihanMisiPage extends StatelessWidget {
   }
 
   Widget _buildDuniaItem({
+    required BuildContext context,
     required String iconPath,
     required String line1,
     required String line2,
+    required VoidCallback onTap,
   }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          iconPath,
-          height: 160,
-          fit: BoxFit.contain,
-        ),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF7941D),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black, width: 1.5),
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            iconPath,
+            height: 160,
+            fit: BoxFit.contain,
           ),
-          child: Column(
-            children: [
-              Text(
-                line1,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white,
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF7941D),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black, width: 1.5),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  line1,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                line2,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white,
+                Text(
+                  line2,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
