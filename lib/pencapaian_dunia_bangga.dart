@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'dunia_bangga_game.dart';
 
 class PencapaianDuniaBanggaPage extends StatelessWidget {
-  const PencapaianDuniaBanggaPage({super.key});
+  final int skorBenar;
+  final int skorSalah;
+
+  const PencapaianDuniaBanggaPage({
+    super.key,
+    required this.skorBenar,
+    required this.skorSalah,
+  });
 
   @override
   Widget build(BuildContext context) {
+    int skorTotal = skorBenar * 100;
+    String medali;
+    if (skorBenar >= 9) {
+      medali = "Emas";
+    } else if (skorBenar >= 6) {
+      medali = "Perak";
+    } else if (skorBenar >= 3) {
+      medali = "Perunggu";
+    } else {
+      medali = "Belum Dapat Medali";
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -23,7 +43,7 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
 
                 // Judul Dunia Bangga
                 Image.asset(
-                  'assets/images/pencapaianduniabangga/tulisan_dunia_bangga.png',
+                  'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
                   width: 220,
                 ),
 
@@ -34,16 +54,15 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 30),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Color(0xFFFFF4DA), // Warna cream muda seperti di desain
+                    color: const Color(0xFFFFF4DA),
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(color: Colors.black, width: 2),
                   ),
-
                   child: Column(
                     children: [
                       // Badge Dunia Bangga
                       Image.asset(
-                        'assets/images/pencapaianduniabangga/badge_dunia_bangga.png',
+                        'assets/images/pencapaianduniabangga/lencana_bangga.png',
                         width: 80,
                       ),
 
@@ -68,13 +87,13 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                       const SizedBox(height: 10),
 
                       // Medali dan Skor
-                      const Text(
-                        'Medali: Emas',
-                        style: TextStyle(fontSize: 16),
+                      Text(
+                        'Medali: $medali',
+                        style: const TextStyle(fontSize: 16),
                       ),
-                      const Text(
-                        'Skor: 850/1000',
-                        style: TextStyle(fontSize: 16),
+                      Text(
+                        'Skor: $skorTotal / 1000',
+                        style: const TextStyle(fontSize: 16),
                       ),
 
                       const SizedBox(height: 10),
@@ -99,16 +118,19 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                       // Tombol Main Ulang
                       ElevatedButton(
                         onPressed: () {
-                          // Tambahkan fungsi main ulang di sini
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.orange,
-                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: const BorderSide(color: Colors.black, width: 2),
-                          ),
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const DuniaBanggaGamePage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(color: Colors.black, width: 2),
                         ),
+                      ),
                         child: const Text(
                           'MAIN ULANG',
                           style: TextStyle(
