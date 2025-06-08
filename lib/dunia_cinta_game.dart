@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
 class Pertanyaan {
   final String gambarPath;
   final String pertanyaanText;
-  final String jawabanBenar; // 'ya' atau 'tidak'
+  final String jawabanBenar;
 
   Pertanyaan({
     required this.gambarPath,
@@ -27,18 +28,57 @@ final List<Pertanyaan> daftarPertanyaan = [
     pertanyaanText: 'Apakah ini uang palsu?',
     jawabanBenar: 'tidak',
   ),
-  // Tambah hingga 25 pertanyaan sesuai kebutuhan...
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/asli-3.png',
-    pertanyaanText: 'Apakah gambar ini asli?',
-    jawabanBenar: 'ya',
+    pertanyaanText: 'Apakah gambar ini bukan uang asli?',
+    jawabanBenar: 'tidak',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/asli-4.png',
     pertanyaanText: 'Apakah gambar ini palsu?',
     jawabanBenar: 'tidak',
   ),
-  // ... dst
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-5.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'tidak',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-6.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'tidak',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-7.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'tidak',
+  ),
+  // Perbaikan: jawaban gambar palsu = 'ya'
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/palsu-1.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/palsu-2.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/palsu-3.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/palsu-4.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/palsu-5.png',
+    pertanyaanText: 'Apakah gambar ini palsu?',
+    jawabanBenar: 'ya',
+  ),
 ];
 
 class DuniaCintaGamePage extends StatefulWidget {
@@ -52,6 +92,33 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
   int currentQuestionIndex = 0;
   String? _selectedAnswer;
   int score = 0;
+  int remainingSeconds = 180;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (remainingSeconds == 0) {
+        timer.cancel();
+        _showResultDialog();
+      } else {
+        setState(() {
+          remainingSeconds--;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +128,8 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background biru langit
           Container(color: const Color(0xFF72B2F4)),
 
-          // Gambar Rupi di bawah full lebar
           Positioned(
             bottom: 0,
             left: 0,
@@ -78,15 +143,13 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
 
           SafeArea(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Timer dan Nyawa
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Timer
+                      // Timer aktif
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
@@ -95,15 +158,15 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                           border: Border.all(color: Colors.black),
                         ),
                         child: Row(
-                          children: const [
-                            Icon(Icons.access_alarm, size: 16),
-                            SizedBox(width: 4),
-                            Text("03:00"),
+                          children: [
+                            const Icon(Icons.access_alarm, size: 16),
+                            const SizedBox(width: 4),
+                            Text(
+                              "${(remainingSeconds ~/ 60).toString().padLeft(2, '0')}:${(remainingSeconds % 60).toString().padLeft(2, '0')}",
+                            ),
                           ],
                         ),
                       ),
-
-                      // Nyawa (contoh 3 hati)
                       Row(
                         children: const [
                           Icon(Icons.favorite, color: Colors.red),
@@ -117,7 +180,7 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
 
                 const SizedBox(height: 16),
 
-                // Soal gambar dan teks
+                // Soal
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 32),
                   padding: const EdgeInsets.all(16),
@@ -126,7 +189,6 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
                         currentQuestion.gambarPath,
@@ -175,10 +237,10 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
 
                           setState(() {
                             _selectedAnswer = null;
-
                             if (currentQuestionIndex < daftarPertanyaan.length - 1) {
                               currentQuestionIndex++;
                             } else {
+                              _timer?.cancel();
                               _showResultDialog();
                             }
                           });
@@ -193,11 +255,7 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                         ),
                         child: const Text(
                           "Selanjutnya",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -264,6 +322,8 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                 currentQuestionIndex = 0;
                 score = 0;
                 _selectedAnswer = null;
+                remainingSeconds = 180;
+                _startTimer();
               });
             },
             child: const Text('Main Lagi'),
@@ -271,7 +331,7 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              // Bisa tambah navigasi ke halaman lain jika perlu
+              Navigator.pop(context); // Navigasi ke halaman sebelumnya
             },
             child: const Text('Keluar'),
           ),
