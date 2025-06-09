@@ -21,11 +21,11 @@ class PencapaianDuniaPahamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String medali = getMedali(skor);
+    final bool belumSelesai = medali == "Belum Dapat Medali";
 
     return Scaffold(
       body: Stack(
         children: [
-          // Background
           Positioned.fill(
             child: Image.asset(
               'assets/images/pencapaianduniapaham/background.png',
@@ -83,31 +83,40 @@ class PencapaianDuniaPahamPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    children: const [
-                                      Icon(Icons.check_circle, color: Colors.green),
-                                      SizedBox(width: 8),
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        belumSelesai
+                                            ? Icons.cancel
+                                            : Icons.check_circle,
+                                        color: belumSelesai
+                                            ? Colors.red
+                                            : Colors.green,
+                                        size: 32,
+                                      ),
+                                      const SizedBox(width: 8),
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Telah',
-                                            style: TextStyle(
+                                            belumSelesai ? 'Belum' : 'Telah',
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                             ),
                                           ),
-                                          Text(
+                                          const Text(
                                             'Diselesaikan',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20,
+                                              fontSize: 18,
                                             ),
                                           ),
                                         ],
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 12),
                                   Text('Medali: $medali'),
                                   const SizedBox(height: 8),
                                   Text('Skor: $skor / 1000'),
@@ -119,26 +128,29 @@ class PencapaianDuniaPahamPage extends StatelessWidget {
 
                         const SizedBox(height: 20),
 
-                        const Text(
-                          'Pelajaran yang dipelajari:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'Kamu berhasil mengenali nilai uang dan menghitung dengan tepat saat bertransaksi.',
-                          textAlign: TextAlign.left,
-                        ),
+                        if (!belumSelesai) ...[
+                          const Text(
+                            'Pelajaran yang dipelajari:',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            'Kamu berhasil mengenali nilai uang dan menghitung dengan tepat saat bertransaksi.',
+                            textAlign: TextAlign.left,
+                          ),
+                          const SizedBox(height: 20),
+                        ],
 
-                        const SizedBox(height: 20),
-
-                        // Tombol MAIN ULANG
+                        // Tombol MULAI BERMAIN / MAIN ULANG
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (_) => const DuniaPahamGamePage()),
+                                MaterialPageRoute(
+                                  builder: (_) => const DuniaPahamGamePage(),
+                                ),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -146,13 +158,14 @@ class PencapaianDuniaPahamPage extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
-                                side: const BorderSide(color: Colors.black, width: 1.5),
+                                side: const BorderSide(
+                                    color: Colors.black, width: 1.5),
                               ),
                               elevation: 3,
                             ),
-                            child: const Text(
-                              'MAIN ULANG',
-                              style: TextStyle(
+                            child: Text(
+                              belumSelesai ? 'MULAI BERMAIN' : 'MAIN ULANG',
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.2,
@@ -167,7 +180,6 @@ class PencapaianDuniaPahamPage extends StatelessWidget {
 
                 const SizedBox(height: 50),
 
-                // Tombol KEMBALI
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(
