@@ -101,6 +101,24 @@ flutter:
     - assets/images/pencapaianduniacinta/lencana_cinta.png
     - assets/images/pencapaianduniabangga/lencana_bangga.png
     - assets/images/pencapaianduniapaham/lencana_paham.png
+    - assets/images/game/dunia-bangga/asli-1.png
+    - assets/images/game/dunia-bangga/asli-2.png
+    - assets/images/game/dunia-bangga/asli-3.jpeg
+    - assets/images/game/dunia-bangga/asli-4.jpeg
+    - assets/images/game/dunia-bangga/asli-5.jpeg
+    - assets/images/game/dunia-bangga/asli-6.jpeg
+    - assets/images/game/dunia-bangga/asli-7.png
+    - assets/images/game/dunia-bangga/background.png
+    - assets/images/game/dunia-bangga/si_rupi_waving.png
+    - assets/images/game/dunia-paham/uang_1000.jpeg
+    - assets/images/game/dunia-paham/uang_2000.png
+    - assets/images/game/dunia-paham/uang_5000.png
+    - assets/images/game/dunia-paham/uang_10000.png
+    - assets/images/game/dunia-paham/uang_20000.jpeg
+    - assets/images/game/dunia-paham/uang_50000.jpeg
+    - assets/images/game/dunia-paham/uang_100000.jpeg
+    - assets/images/game/dunia-paham/coin_mascot.png
+    - assets/images/game/dunia-paham/background.png
 
 
   # To add assets to your application, add an assets section, like this:

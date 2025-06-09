@@ -1,14 +1,34 @@
 import 'package:flutter/material.dart';
+import 'dunia_bangga_game.dart';
 
 class PencapaianDuniaBanggaPage extends StatelessWidget {
-  const PencapaianDuniaBanggaPage({super.key});
+  final int skorBenar;
+  final int skorSalah;
+
+  const PencapaianDuniaBanggaPage({
+    super.key,
+    required this.skorBenar,
+    required this.skorSalah,
+  });
 
   @override
   Widget build(BuildContext context) {
+    int skorTotal = skorBenar * 100;
+    String medali;
+    if (skorBenar >= 9) {
+      medali = "Emas";
+    } else if (skorBenar >= 6) {
+      medali = "Perak";
+    } else if (skorBenar >= 3) {
+      medali = "Perunggu";
+    } else {
+      medali = "Belum Dapat Medali";
+    }
+
     return Scaffold(
       body: Stack(
         children: [
-          // Gambar background
+          // Background
           Positioned.fill(
             child: Image.asset(
               'assets/images/pencapaianduniabangga/background.png',
@@ -19,137 +39,114 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
-                // Judul "DUNIA CINTA"
-                Center(
-                  child: Image.asset(
-                    'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
-                    height: 140,
-                    fit: BoxFit.contain,
-                  ),
+                // Judul Dunia Bangga
+                Image.asset(
+                  'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
+                  width: 220,
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
 
-                // Box konten
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFFF4DA), // Warna cream
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.black, width: 1),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 6,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Baris lencana + teks status
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              'assets/images/pencapaianduniabangga/lencana_bangga.png',
-                              height: 120,
-                            ),
-                            const SizedBox(width: 40),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: const [
-                                      Icon(Icons.check_circle, color: Colors.green),
-                                      SizedBox(width: 8),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Telah',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Diselesaikan',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
-                                  const Text('Medali: Emas'),
-                                  const SizedBox(height: 8),
-                                  const Text('Skor: 850/1000'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                // Container Putih Tengah
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFF4DA),
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(color: Colors.black, width: 2),
+                  ),
+                  child: Column(
+                    children: [
+                      // Badge Dunia Bangga
+                      Image.asset(
+                        'assets/images/pencapaianduniabangga/lencana_bangga.png',
+                        width: 80,
+                      ),
 
-                        const SizedBox(height: 20),
+                      const SizedBox(height: 10),
 
-                        const Text(
-                          'Pelajaran yang dipelajari:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'Kini kamu tahu bahwa setiap lembar Rupiah menyimpan kisah perjuangan dan kebanggaan bangsa.',
-                          textAlign: TextAlign.left,
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // Tombol MAIN ULANG
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // TODO: Tambahkan fungsi main ulang
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFF7941D),
-                              padding: const EdgeInsets.symmetric(vertical: 14),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                side: const BorderSide(color: Colors.black, width: 1.5),
-                              ),
-                              elevation: 3,
-                            ),
-                            child: const Text(
-                              'MAIN ULANG',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.2,
-                              ),
+                      // Status
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.check_circle, color: Colors.green),
+                          SizedBox(width: 8),
+                          Text(
+                            'Telah Diselesaikan',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
                           ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      // Medali dan Skor
+                      Text(
+                        'Medali: $medali',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        'Skor: $skorTotal / 1000',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      // Pelajaran yang Dipelajari
+                      const Text(
+                        'Pelajaran yang dipelajari:',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Kini kamu tahu bahwa setiap lembar Rupiah menyimpan kisah perjuangan dan kebanggaan bangsa.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 14),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Tombol Main Ulang
+                      ElevatedButton(
+                        onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const DuniaBanggaGamePage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(color: Colors.black, width: 2),
+                        ),
+                      ),
+                        child: const Text(
+                          'MAIN ULANG',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
 
-                // Tombol KEMBALI
+                // Tombol Kembali
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(
