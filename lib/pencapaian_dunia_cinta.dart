@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
+import 'dunia_cinta_game.dart'; // untuk Main Ulang
 
 class PencapaianDuniaCintaPage extends StatelessWidget {
-  const PencapaianDuniaCintaPage({super.key});
+  final int skor;
+
+  const PencapaianDuniaCintaPage({super.key, required this.skor});
+
+  String getMedali(int skor) {
+    if (skor >= 900) {
+      return 'Emas';
+    } else if (skor >= 700) {
+      return 'Perak';
+    } else if (skor >= 500) {
+      return 'Perunggu';
+    } else {
+      return "Belum Dapat Medali";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final String medali = getMedali(skor);
+
     return Scaffold(
       body: Stack(
         children: [
-          // Gambar background
+          // Background
           Positioned.fill(
             child: Image.asset(
               'assets/images/pencapaianduniacinta/background.png',
               fit: BoxFit.cover,
             ),
           ),
-
           SafeArea(
             child: Column(
               children: [
                 const SizedBox(height: 50),
 
-                // Judul "DUNIA CINTA"
+                // Judul
                 Center(
                   child: Image.asset(
                     'assets/images/pencapaianduniacinta/teks-dunia-cinta.png',
@@ -32,14 +48,14 @@ class PencapaianDuniaCintaPage extends StatelessWidget {
 
                 const SizedBox(height: 50),
 
-                // Box konten
+                // Box isi pencapaian
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF4DA), // Warna cream
+                      color: const Color(0xFFFFF4DA),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.black, width: 1),
                       boxShadow: [
@@ -51,10 +67,9 @@ class PencapaianDuniaCintaPage extends StatelessWidget {
                       ],
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Baris lencana + teks status
+                        // Lencana dan status
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,9 +108,9 @@ class PencapaianDuniaCintaPage extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 8),
-                                  const Text('Medali: Emas'),
+                                  Text('Medali: $medali'),
                                   const SizedBox(height: 8),
-                                  const Text('Skor: 850/1000'),
+                                  Text('Skor: $skor / 1000'),
                                 ],
                               ),
                             ),
@@ -110,7 +125,7 @@ class PencapaianDuniaCintaPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         const Text(
-                          'Kamu berhasil mengenali ciri uang asli dan tahu cara membedakannya dari uang palsu.',
+                          'Kamu berhasil mengenali ciri uang asli  dan tahu cara membedakannya dari uang palsu',
                           textAlign: TextAlign.left,
                         ),
 
@@ -121,7 +136,10 @@ class PencapaianDuniaCintaPage extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              // TODO: Tambahkan fungsi main ulang
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (_) => const DuniaCintaGamePage()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFF7941D),

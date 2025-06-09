@@ -43,7 +43,7 @@ class PencapaianPage extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
-                // Tiga dunia horizontal dengan fungsi klik pada Dunia Paham
+                // Tiga dunia horizontal
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -57,7 +57,9 @@ class PencapaianPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PencapaianDuniaCintaPage(),
+                              builder: (context) => const PencapaianDuniaCintaPage(
+                                skor: 0,
+                              ),
                             ),
                           );
                         },
@@ -70,7 +72,10 @@ class PencapaianPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PencapaianDuniaBanggaPage(),
+                              builder: (context) => const PencapaianDuniaBanggaPage(
+                                skorBenar: 0,
+                                skorSalah: 0,
+                              ),
                             ),
                           );
                         },
@@ -83,7 +88,9 @@ class PencapaianPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const PencapaianDuniaPahamPage(),
+                              builder: (context) => const PencapaianDuniaPahamPage(
+                                skor: 0,
+                              ),
                             ),
                           );
                         },
@@ -146,7 +153,7 @@ class PencapaianPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF7941D), // oranye
+              color: const Color(0xFFF7941D),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.black, width: 1.5),
             ),

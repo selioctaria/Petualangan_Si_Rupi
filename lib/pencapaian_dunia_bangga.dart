@@ -1,14 +1,34 @@
 import 'package:flutter/material.dart';
+import 'dunia_bangga_game.dart';
 
 class PencapaianDuniaBanggaPage extends StatelessWidget {
-  const PencapaianDuniaBanggaPage({super.key});
+  final int skorBenar;
+  final int skorSalah;
+
+  const PencapaianDuniaBanggaPage({
+    super.key,
+    required this.skorBenar,
+    required this.skorSalah,
+  });
 
   @override
   Widget build(BuildContext context) {
+    int skorTotal = skorBenar * 100;
+    String medali;
+    if (skorBenar >= 9) {
+      medali = "Emas";
+    } else if (skorBenar >= 6) {
+      medali = "Perak";
+    } else if (skorBenar >= 3) {
+      medali = "Perunggu";
+    } else {
+      medali = "Belum Dapat Medali";
+    }
+
     return Scaffold(
       body: Stack(
         children: [
-          // Gambar background
+          // Background
           Positioned.fill(
             child: Image.asset(
               'assets/images/pencapaianduniabangga/background.png',
@@ -21,25 +41,22 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 50),
 
-                // Judul "DUNIA CINTA"
-                Center(
-                  child: Image.asset(
-                    'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
-                    height: 140,
-                    fit: BoxFit.contain,
-                  ),
+                // Judul Dunia Bangga
+                Image.asset(
+                  'assets/images/pencapaianduniabangga/teks-dunia-bangga.png',
+                  width: 220,
                 ),
 
                 const SizedBox(height: 50),
 
-                // Box konten
+                // Box isi pencapaian
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF4DA), // Warna cream
+                      color: const Color(0xFFFFF4DA),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.black, width: 1),
                       boxShadow: [
@@ -51,10 +68,9 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                       ],
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Baris lencana + teks status
+                        // Lencana dan status
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,9 +109,9 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 8),
-                                  const Text('Medali: Emas'),
+                                  Text('Medali: $medali'),
                                   const SizedBox(height: 8),
-                                  const Text('Skor: 850/1000'),
+                                  Text('Skor: $skorTotal / 1000'),
                                 ],
                               ),
                             ),
@@ -110,7 +126,7 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         const Text(
-                          'Kini kamu tahu bahwa setiap lembar Rupiah menyimpan kisah perjuangan dan kebanggaan bangsa.',
+                          'Kini kamu tahu bahwa setiap lembar Rupiah menyimpan kisah perjuangan dan kebanggaan bangsa',
                           textAlign: TextAlign.left,
                         ),
 
@@ -121,7 +137,10 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              // TODO: Tambahkan fungsi main ulang
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (_) => const DuniaBanggaGamePage()),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFF7941D),
@@ -149,7 +168,7 @@ class PencapaianDuniaBanggaPage extends StatelessWidget {
 
                 const SizedBox(height: 50),
 
-                // Tombol KEMBALI
+                // Tombol Kembali
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(

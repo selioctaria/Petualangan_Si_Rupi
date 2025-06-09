@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'main_menu_page.dart';
 import 'dunia_cinta_game.dart'; // Tambahkan import halaman game Dunia Cinta
+import 'dunia_bangga_game.dart';
+import 'dunia_paham_game.dart';
 
 class PemilihanMisiPage extends StatelessWidget {
   const PemilihanMisiPage({super.key});
@@ -81,7 +83,12 @@ class PemilihanMisiPage extends StatelessWidget {
                           line1: 'DUNIA',
                           line2: 'BANGGA',
                           onTap: () {
-                            // Tambahkan navigasi ke halaman Dunia Bangga jika sudah ada
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DuniaBanggaGamePage(),
+                              ),
+                            );// Tambahkan navigasi ke halaman Dunia Bangga jika sudah ada
                           },
                         ),
                       ),
@@ -98,7 +105,12 @@ class PemilihanMisiPage extends StatelessWidget {
                       line1: 'DUNIA',
                       line2: 'PAHAM',
                       onTap: () {
-                        // Tambahkan navigasi ke halaman Dunia Paham jika sudah ada
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DuniaPahamGamePage(),
+                              ),
+                            );// Tambahkan navigasi ke halaman Dunia Paham jika sudah ada
                       },
                     ),
                   ),
@@ -106,33 +118,24 @@ class PemilihanMisiPage extends StatelessWidget {
                   const SizedBox(height: 40),
 
                   // Tombol Kembali
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MainMenuPage(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF1746A2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        elevation: 4,
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 28, 59, 184),
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        side: const BorderSide(color: Colors.black, width: 2),
                       ),
-                      child: const Text(
-                        'KEMBALI',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      'KEMBALI',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow,
+                        letterSpacing: 1.2,
                       ),
                     ),
                   ),
