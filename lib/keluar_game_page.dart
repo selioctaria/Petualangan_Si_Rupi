@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main_menu_page.dart';
+import 'package:flutter/services.dart'; // Tambahkan ini
 
 class KeluarGamePage extends StatelessWidget {
   const KeluarGamePage({super.key});
@@ -73,7 +73,9 @@ class KeluarGamePage extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF7B4E3C),
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 40, vertical: 15),
+                                      horizontal: 40,
+                                      vertical: 15,
+                                    ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16),
                                     ),
@@ -92,12 +94,15 @@ class KeluarGamePage extends StatelessWidget {
 
                                 // Tombol KELUAR
                                 ElevatedButton(
-                                  onPressed: () => Navigator.of(context)
-                                      .popUntil((route) => route.isFirst),
+                                  onPressed: () {
+                                    SystemNavigator.pop(); // Tutup aplikasi
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFFE55C32),
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 40, vertical: 15),
+                                      horizontal: 40,
+                                      vertical: 15,
+                                    ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16),
                                     ),

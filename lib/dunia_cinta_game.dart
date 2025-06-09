@@ -3,7 +3,24 @@ import 'package:flutter/material.dart';
 import 'pencapaian_dunia_cinta.dart';
 
 void main() {
-  runApp(const MaterialApp(home: DuniaCintaGamePage()));
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Dunia Cinta',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Fredoka', // Gunakan font Fredoka
+        useMaterial3: true,
+      ),
+      home: const DuniaCintaGamePage(),
+    );
+  }
 }
 
 class Pertanyaan {
@@ -18,7 +35,6 @@ class Pertanyaan {
   });
 }
 
-// Semua pertanyaan yang kamu berikan lengkap:
 final List<Pertanyaan> daftarPertanyaan = [
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/asli-1.png',
@@ -124,7 +140,7 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
   void _showGameOverDialog() {
     showDialog(
       context: context,
-      barrierDismissible: false, // agar tidak bisa dismiss sembarangan
+      barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
           title: const Text('Game Selesai!'),
@@ -140,7 +156,7 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.of(context).pop(); // keluar halaman game
+                Navigator.of(context).pop();
               },
               child: const Text('Keluar'),
             ),
@@ -246,7 +262,6 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Timer
                       Row(
                         children: [
                           const Icon(Icons.timer, color: Colors.white, size: 18),
@@ -261,8 +276,6 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                           ),
                         ],
                       ),
-
-                      // Nyawa
                       Row(
                         children: List.generate(3, (index) {
                           if (index < lives) {
@@ -272,8 +285,6 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                           }
                         }),
                       ),
-
-                      // Nomor Soal
                       Text(
                         "${currentQuestionIndex + 1}/${daftarPertanyaan.length}",
                         style: const TextStyle(
@@ -285,7 +296,6 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 16),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 32),
@@ -353,7 +363,9 @@ class _DuniaCintaGamePageState extends State<DuniaCintaGamePage> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: _selectedAnswer == null ? Colors.grey : const Color(0xFFE85B1B),
+                          backgroundColor: _selectedAnswer == null
+                              ? Colors.grey
+                              : const Color(0xFFE85B1B),
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
