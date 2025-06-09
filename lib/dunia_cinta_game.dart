@@ -22,53 +22,53 @@ class Pertanyaan {
 final List<Pertanyaan> daftarPertanyaan = [
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/asli-1.png',
-    pertanyaanText: 'Apakah ini uang asli?',
-    jawabanBenar: 'ya',
-  ),
-  Pertanyaan(
-    gambarPath: 'assets/images/game/dunia-cinta/asli-2.png',
-    pertanyaanText: 'Apakah ini uang asli?',
-    jawabanBenar: 'ya',
-  ),
-  Pertanyaan(
-    gambarPath: 'assets/images/game/dunia-cinta/asli-3.png',
-    pertanyaanText: 'Apakah ini uang asli?',
-    jawabanBenar: 'ya',
-  ),
-  Pertanyaan(
-    gambarPath: 'assets/images/game/dunia-cinta/asli-4.png',
-    pertanyaanText: 'Apakah ini uang asli?',
-    jawabanBenar: 'ya',
-  ),
-  Pertanyaan(
-    gambarPath: 'assets/images/game/dunia-cinta/asli-5.png',
-    pertanyaanText: 'Apakah ini uang asli?',
-    jawabanBenar: 'ya',
+    pertanyaanText: 'Apakah uang ini palsu?',
+    jawabanBenar: 'tidak',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/palsu-1.png',
-    pertanyaanText: 'Apakah gambar ini palsu?',
+    pertanyaanText: 'Apakah uang ini bukan asli?',
     jawabanBenar: 'ya',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/palsu-2.png',
-    pertanyaanText: 'Apakah gambar ini palsu?',
+    pertanyaanText: 'Apakah uang ini palsu?',
     jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-2.png',
+    pertanyaanText: 'Apakah uang ini bukan palsu?',
+    jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-3.png',
+    pertanyaanText: 'Apakah uang ini palsu?',
+    jawabanBenar: 'tidak',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/palsu-3.png',
-    pertanyaanText: 'Apakah gambar ini palsu?',
+    pertanyaanText: 'Apakah uang ini bukan asli?',
     jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-4.png',
+    pertanyaanText: 'Apakah uang ini palsu?',
+    jawabanBenar: 'tidak',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/palsu-4.png',
-    pertanyaanText: 'Apakah gambar ini palsu?',
-    jawabanBenar: 'ya',
+    pertanyaanText: 'Apakah uang ini asli?',
+    jawabanBenar: 'tidak',
   ),
   Pertanyaan(
     gambarPath: 'assets/images/game/dunia-cinta/palsu-5.png',
-    pertanyaanText: 'Apakah gambar ini palsu?',
+    pertanyaanText: 'Apakah uang ini palsu?',
     jawabanBenar: 'ya',
+  ),
+  Pertanyaan(
+    gambarPath: 'assets/images/game/dunia-cinta/asli-5.png',
+    pertanyaanText: 'Apakah uang ini bukan asli?',
+    jawabanBenar: 'tidak',
   ),
 ];
 
